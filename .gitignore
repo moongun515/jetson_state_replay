@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Dataset
+data/
+*.jpg
+*.jpeg
+*.png
+
+# Large outputs
+outputs/replay/
+*.mp4
+*.avi
+*.mov
+
+# Model files
+*.pt
+*.onnx
+*.engine
+
+# YOLO runs
+runs/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
