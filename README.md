@@ -477,3 +477,87 @@ Jetson camera or recorded video
 다음 핵심 단계는 Jetson Orin Nano Super에서 동일한 파이프라인을 실행하고, 해상도, 모델 크기, Replay 복잡도 변화에 따른 성능 한계를 측정하는 것이다.
 
 현재 abstract replay는 본 프로젝트의 2D 시뮬레이션 MVP 결과물이며, 이후 Jetson 성능 측정 결과와 결합하면 영상 상태 추출 기반 가상 장면 재현 프로젝트의 실험적 가치가 더 명확해진다.
+
+---
+
+## 18. Jetson Orin Nano Super First Runtime Result
+
+Jetson Orin Nano Super에서 MOT17-02-DPM 600프레임을 사용하여 1차 실행 테스트를 완료하였다.
+
+### 18.1 Environment Note
+
+현재 Jetson의 기존 `yolo_env` 가상환경을 사용하였다.
+
+- ultralytics: 8.4.46
+- torch: 2.11.0+cu130
+- OpenCV: 4.13.0
+- NumPy: 1.24.4
+- SciPy: 1.10.1
+- CUDA available: False
+
+현재 PyTorch CUDA 버전과 Jetson 드라이버/CUDA 버전이 맞지 않아 GPU 가속이 적용되지 않았다.  
+따라서 아래 YOLO+ByteTrack 결과는 Jetson GPU 성능이 아니라 **CPU fallback 상태의 1차 실행 결과**이다.
+
+### 18.2 Jetson GT Replay Result
+
+| Item | Value |
+|---|---:|
+| Input frames | 600 |
+| Written frames | 600 |
+| Total objects drawn | 18,581 |
+| Avg objects/frame | 30.968 |
+| Avg read time | 17.626 ms/frame |
+| Avg render time | 59.393 ms/frame |
+| Avg write time | 89.492 ms/frame |
+| Avg frame time | 166.747 ms/frame |
+| Processing FPS | 5.973 |
+
+### 18.3 Jetson YOLO11n + ByteTrack Result
+
+| Item | Value |
+|---|---:|
+| Model | YOLO11n |
+| Input frames | 600 |
+| Total tracked objects | 5,052 |
+| Elapsed time | 287.5375 sec |
+| Processing FPS | 2.087 |
+
+### 18.4 Jetson Prediction Replay Result
+
+| Item | Value |
+|---|---:|
+| Input frames | 600 |
+| Written frames | 600 |
+| Total objects drawn | 5,052 |
+| Avg objects/frame | 8.420 |
+| Avg read time | 17.388 ms/frame |
+| Avg render time | 22.735 ms/frame |
+| Avg write time | 70.039 ms/frame |
+| Avg frame time | 110.403 ms/frame |
+| Processing FPS | 9.032 |
+
+### 18.5 Jetson GT vs Prediction Summary
+
+| Item | GT | YOLO+ByteTrack |
+|---|---:|---:|
+| Frame count | 600 | 600 |
+| Total objects | 18,581 | 5,052 |
+| Avg objects/frame | 30.968 | 8.42 |
+| Max objects/frame | 36 | 16 |
+| Unique track IDs | 62 | 114 |
+| Conversion elapsed sec | - | 287.5375 |
+| Estimated extraction FPS | - | 2.087 |
+| Pred / GT total object ratio | - | 0.2719 |
+
+### 18.6 Current Interpretation
+
+Jetson에서 GT 기반 State JSON 생성, GT 2D Replay, YOLO11n + ByteTrack 기반 Pred State JSON 생성, Pred 2D Replay까지 모두 성공하였다.
+
+다만 현재 YOLO+ByteTrack은 CUDA를 사용하지 못하고 CPU fallback으로 실행되었기 때문에 처리 속도가 2.087 FPS로 낮게 측정되었다.  
+이는 Jetson Orin Nano Super의 실제 GPU 가속 성능이 아니라, 환경 호환성 확인용 1차 실행 결과이다.
+
+Replay 단계에서는 GT보다 Prediction 결과가 더 빠르게 처리되었다.  
+이는 GT가 18,581개의 객체 상태를 그리는 반면, YOLO+ByteTrack Prediction은 5,052개의 객체 상태만 그리기 때문이다.  
+따라서 객체 수가 Replay 렌더링 성능에 직접적인 영향을 준다는 것을 확인할 수 있다.
+
+다음 단계는 Jetson에 맞는 PyTorch/CUDA 또는 TensorRT 환경을 구성하여 GPU 가속 상태에서 동일한 실험을 다시 수행하는 것이다.

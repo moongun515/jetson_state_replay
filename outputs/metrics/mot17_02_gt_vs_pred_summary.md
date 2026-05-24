@@ -18,8 +18,8 @@
 | Avg objects/frame | 30.968 | 8.42 |
 | Max objects/frame | 36 | 16 |
 | Unique track IDs | 62 | 114 |
-| Conversion elapsed sec | None | 59.7279 |
-| Estimated extraction FPS | None | 10.046 |
+| Conversion elapsed sec | None | 287.5375 |
+| Estimated extraction FPS | None | 2.087 |
 
 ## 3. Ratio Summary
 
