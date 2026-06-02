@@ -1,0 +1,18 @@
+Jetson Orin Nano Super GPU environment working state
+
+torch       : 2.8.0
+torchvision : 0.23.0
+numpy       : 1.26.1
+opencv      : 4.11.0
+ultralytics : 8.4.46
+CUDA        : 12.6
+cuDNN       : 9.3
+TensorRT    : 10.3
+
+Verification:
+- pip check: No broken requirements found
+- torch.cuda.is_available(): True
+- GPU name: Orin
+- CUDA tensor test: SUCCESS
+- YOLO11n model device: cuda:0
+- Single-image YOLO GPU inference: SUCCESS

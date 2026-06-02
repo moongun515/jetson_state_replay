@@ -11,18 +11,17 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 
 # 현재는 YOLO + ByteTrack 예측 결과를 replay
-# TensorRT FP16 예측 결과를 replay
-STATE_PATH = ROOT / "outputs" / "state_json" / "mot17_02_pred_yolo11n_engine_fp16_clocks_state.json"
+STATE_PATH = ROOT / "outputs" / "state_json" / "mot17_02_gt_state.json"
 
 REPLAY_OUT_DIR = ROOT / "outputs" / "replay"
 METRICS_OUT_DIR = ROOT / "outputs" / "metrics"
 
-OVERLAY_OUT = REPLAY_OUT_DIR / "mot17_02_pred_yolo11n_engine_fp16_overlay.mp4"
-ABSTRACT_OUT = REPLAY_OUT_DIR / "mot17_02_pred_yolo11n_engine_fp16_abstract.mp4"
+OVERLAY_OUT = REPLAY_OUT_DIR / "mot17_02_gt_overlay.mp4"
+ABSTRACT_OUT = REPLAY_OUT_DIR / "mot17_02_gt_abstract.mp4"
 
-METRICS_JSON_OUT = METRICS_OUT_DIR / "mot17_02_pred_yolo11n_engine_fp16_replay_metrics.json"
-METRICS_CSV_OUT = METRICS_OUT_DIR / "mot17_02_pred_yolo11n_engine_fp16_replay_frame_metrics.csv"
-METRICS_SUMMARY_OUT = METRICS_OUT_DIR / "mot17_02_pred_yolo11n_engine_fp16_replay_summary.txt"
+METRICS_JSON_OUT = METRICS_OUT_DIR / "mot17_02_gt_replay_metrics.json"
+METRICS_CSV_OUT = METRICS_OUT_DIR / "mot17_02_gt_replay_frame_metrics.csv"
+METRICS_SUMMARY_OUT = METRICS_OUT_DIR / "mot17_02_gt_replay_summary.txt"
 # None이면 원본 FPS 사용.
 # 확인용으로 천천히 보고 싶으면 10, 5, 2 등으로 변경 가능.
 DEBUG_OUTPUT_FPS = None

@@ -1,0 +1,65 @@
+ii  cuda-cccl-12-6                                           12.6.37-1                                        arm64        CUDA CCCL
+ii  cuda-command-line-tools-12-6                             12.6.11-1                                        arm64        CUDA command-line tools
+ii  cuda-compiler-12-6                                       12.6.11-1                                        arm64        CUDA compiler
+ii  cuda-crt-12-6                                            12.6.68-1                                        arm64        CUDA crt
+ii  cuda-cudart-12-6                                         12.6.68-1                                        arm64        CUDA Runtime native Libraries
+ii  cuda-cudart-dev-12-6                                     12.6.68-1                                        arm64        CUDA Runtime native dev links, headers
+ii  cuda-cuobjdump-12-6                                      12.6.68-1                                        arm64        CUDA cuobjdump
+ii  cuda-cupti-12-6                                          12.6.68-1                                        arm64        CUDA profiling tools runtime libs.
+ii  cuda-cupti-dev-12-6                                      12.6.68-1                                        arm64        CUDA profiling tools interface.
+ii  cuda-cuxxfilt-12-6                                       12.6.68-1                                        arm64        CUDA cuxxfilt
+ii  cuda-documentation-12-6                                  12.6.68-1                                        arm64        CUDA documentation
+ii  cuda-driver-dev-12-6                                     12.6.68-1                                        arm64        CUDA Driver native dev stub library
+ii  cuda-gdb-12-6                                            12.6.68-1                                        arm64        CUDA-GDB
+ii  cuda-libraries-12-6                                      12.6.11-1                                        arm64        CUDA Libraries 12.6 meta-package
+ii  cuda-libraries-dev-12-6                                  12.6.11-1                                        arm64        CUDA Libraries 12.6 development meta-package
+ii  cuda-nsight-compute-12-6                                 12.6.11-1                                        arm64        NVIDIA Nsight Compute
+ii  cuda-nvcc-12-6                                           12.6.68-1                                        arm64        CUDA nvcc
+ii  cuda-nvdisasm-12-6                                       12.6.68-1                                        arm64        CUDA disassembler
+ii  cuda-nvml-dev-12-6                                       12.6.68-1                                        arm64        NVML native dev links, headers
+ii  cuda-nvprune-12-6                                        12.6.68-1                                        arm64        CUDA nvprune
+ii  cuda-nvrtc-12-6                                          12.6.68-1                                        arm64        NVRTC native runtime libraries
+ii  cuda-nvrtc-dev-12-6                                      12.6.68-1                                        arm64        NVRTC native dev links, headers
+ii  cuda-nvtx-12-6                                           12.6.68-1                                        arm64        NVIDIA Tools Extension
+ii  cuda-nvvm-12-6                                           12.6.68-1                                        arm64        CUDA nvvm
+ii  cuda-profiler-api-12-6                                   12.6.68-1                                        arm64        CUDA Profiler API
+ii  cuda-sanitizer-12-6                                      12.6.68-1                                        arm64        CUDA Sanitizer
+ii  cuda-toolkit-12                                          12.6.11-1                                        arm64        CUDA Toolkit 12 meta-package
+ii  cuda-toolkit-12-6                                        12.6.11-1                                        arm64        CUDA Toolkit 12.6 meta-package
+ii  cuda-toolkit-12-6-config-common                          12.6.68-1                                        all          Common config package for CUDA Toolkit 12.6.
+ii  cuda-toolkit-12-config-common                            12.6.68-1                                        all          Common config package for CUDA Toolkit 12.
+ii  cuda-toolkit-config-common                               12.6.68-1                                        all          Common config package for CUDA Toolkit.
+ii  cuda-tools-12-6                                          12.6.11-1                                        arm64        CUDA Tools meta-package
+ii  cuda-visual-tools-12-6                                   12.6.11-1                                        arm64        CUDA visual tools
+ii  cudnn-local-tegra-repo-ubuntu2204-9.3.0                  1.0-1                                            arm64        cudnn-local-tegra repository configuration files
+ii  l4t-cuda-tegra-repo-ubuntu2204-12-6-local                12.6.11-1                                        arm64        l4t-cuda-tegra repository configuration files
+ii  libcudnn9-cuda-12                                        9.3.0.75-1                                       arm64        cuDNN runtime libraries for CUDA 12.6
+ii  libcudnn9-dev-cuda-12                                    9.3.0.75-1                                       arm64        cuDNN development headers and symlinks for CUDA 12.6
+ii  libcudnn9-samples                                        9.3.0.75-1                                       all          cuDNN samples
+ii  libcudnn9-static-cuda-12                                 9.3.0.75-1                                       arm64        cuDNN static libraries for CUDA 12.6
+ii  libnvinfer-bin                                           10.3.0.30-1+cuda12.5                             arm64        TensorRT binaries
+ii  libnvinfer-dev                                           10.3.0.30-1+cuda12.5                             arm64        TensorRT development libraries
+ii  libnvinfer-dispatch-dev                                  10.3.0.30-1+cuda12.5                             arm64        TensorRT development dispatch runtime libraries
+ii  libnvinfer-dispatch10                                    10.3.0.30-1+cuda12.5                             arm64        TensorRT dispatch runtime library
+ii  libnvinfer-headers-dev                                   10.3.0.30-1+cuda12.5                             arm64        TensorRT development headers
+ii  libnvinfer-headers-plugin-dev                            10.3.0.30-1+cuda12.5                             arm64        TensorRT plugin headers
+ii  libnvinfer-lean-dev                                      10.3.0.30-1+cuda12.5                             arm64        TensorRT lean runtime libraries
+ii  libnvinfer-lean10                                        10.3.0.30-1+cuda12.5                             arm64        TensorRT lean runtime library
+ii  libnvinfer-plugin-dev                                    10.3.0.30-1+cuda12.5                             arm64        TensorRT plugin libraries
+ii  libnvinfer-plugin10                                      10.3.0.30-1+cuda12.5                             arm64        TensorRT plugin libraries
+ii  libnvinfer-samples                                       10.3.0.30-1+cuda12.5                             all          TensorRT samples
+ii  libnvinfer-vc-plugin-dev                                 10.3.0.30-1+cuda12.5                             arm64        TensorRT vc-plugin library
+ii  libnvinfer-vc-plugin10                                   10.3.0.30-1+cuda12.5                             arm64        TensorRT vc-plugin library
+ii  libnvinfer10                                             10.3.0.30-1+cuda12.5                             arm64        TensorRT runtime libraries
+ii  libnvonnxparsers-dev                                     10.3.0.30-1+cuda12.5                             arm64        TensorRT ONNX libraries
+ii  libnvonnxparsers10                                       10.3.0.30-1+cuda12.5                             arm64        TensorRT ONNX libraries
+ii  nv-tensorrt-local-tegra-repo-ubuntu2204-10.3.0-cuda-12.5 1.0-1                                            arm64        nv-tensorrt-local-tegra repository configuration files
+ii  nvidia-l4t-core                                          36.4.7-20250918154033                            arm64        NVIDIA Core Package
+ii  nvidia-l4t-cuda                                          36.4.7-20250918154033                            arm64        NVIDIA CUDA Package
+ii  nvidia-l4t-cuda-utils                                    36.4.7-20250918154033                            arm64        NVIDIA CUDA utilities
+ii  nvidia-l4t-cudadebuggingsupport                          12.6-34622040.0                                  arm64        NVIDIA CUDA Debugger Support Package
+ii  python3-libnvinfer                                       10.3.0.30-1+cuda12.5                             arm64        Python 3 bindings for TensorRT standard runtime
+ii  python3-libnvinfer-dev                                   10.3.0.30-1+cuda12.5                             arm64        Python 3 development package for TensorRT standard runtime
+ii  python3-libnvinfer-dispatch                              10.3.0.30-1+cuda12.5                             arm64        Python 3 bindings for TensorRT dispatch runtime
+ii  python3-libnvinfer-lean                                  10.3.0.30-1+cuda12.5                             arm64        Python 3 bindings for TensorRT lean runtime
+ii  tensorrt                                                 10.3.0.30-1+cuda12.5                             arm64        Meta package for TensorRT

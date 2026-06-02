@@ -22,7 +22,7 @@ METRICS_DIR = ROOT / "outputs" / "metrics"
 METRICS_PATH = METRICS_DIR / "mot17_02_pred_yolo_bytetrack_metrics.json"
 
 # 먼저 가장 가벼운 모델로 시작
-MODEL_NAME = "yolo11n.engine"
+MODEL_NAME = "yolo11s.pt"
 
 # MVP에서는 person만 추적
 TARGET_CLASS_NAMES = {"person"}

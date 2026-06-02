@@ -1,0 +1,74 @@
+Jetson Orin Nano Super 사용 시 주의사항
+=====================================
+
+1. 기본 원칙
+- Jetson은 일반 PC처럼 무조건 최신 버전으로 업데이트하면 안 됨.
+- JetPack, CUDA, cuDNN, TensorRT, PyTorch 버전 조합을 맞춰서 사용해야 함.
+- 현재 정상 환경은 최대한 유지하고 불필요한 설치는 피하기.
+
+2. 현재 정상 동작 확인 환경
+- CUDA        : 12.6
+- cuDNN       : 9.3
+- TensorRT    : 10.3
+- PyTorch     : 2.8.0
+- Torchvision : 0.23.0
+- NumPy       : 1.26.1
+- OpenCV      : 4.11.0
+- Ultralytics : 8.4.46
+- GPU 확인    : torch.cuda.is_available() == True
+- YOLO 확인   : model device == cuda:0
+
+3. import와 install 구분
+- 코드 안의 import는 자유롭게 사용 가능.
+  예) import torch, import cv2, import numpy
+- 위험한 것은 설치 및 업데이트 명령임.
+- 특히 아래 명령은 바로 실행하지 않기.
+  pip install -U torch
+  pip install -U torchvision
+  pip install -U numpy
+  pip install -U opencv-python
+  pip install -U ultralytics
+  pip install torch torchvision
+
+4. 새 라이브러리 설치 시
+- 기존 yolo_env는 기준 환경으로 보존.
+- 새로운 실험은 새 가상환경에서 진행.
+- 설치 전:
+  python -m pip freeze > requirements_before_change.txt
+- 설치 후:
+  python -m pip check
+- 가능하면 버전 명시:
+  python -m pip install "패키지명==확인된_버전"
+
+5. Jetson에서 주의할 명령
+- sudo apt update는 가능.
+- sudo apt upgrade, sudo apt full-upgrade는 목적 없이 실행하지 않기.
+- CUDA, cuDNN, TensorRT를 따로 최신화하지 않기.
+- 외부 프로젝트의 requirements.txt는 바로 설치하지 말고 먼저 내용 확인.
+
+6. 성능 실험 전 확인
+- 가상환경:
+  source ~/yolo_test/yolo_env/bin/activate
+- GPU:
+  python -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
+- 패키지 상태:
+  python -m pip check
+- 전력 모드:
+  sudo /usr/sbin/nvpmodel -q
+- 저장 공간:
+  df -h
+- 리소스 로그:
+  tegrastats --interval 1000 --logfile outputs/metrics/tegrastats_test.log
+
+7. 장비 사용 시
+- CSI 카메라 연결은 가능하면 전원을 끄고 작업.
+- 추론 또는 영상 저장 중 전원을 바로 뽑지 않기.
+- 종료는 sudo shutdown -h now 사용.
+- 팬 정지, 화면 꺼짐, 재부팅 반복 시 코드보다 전원과 발열부터 확인.
+
+8. 기억할 핵심
+- import는 자유롭게.
+- install은 최소한으로.
+- 최신보다 JetPack 호환 버전 우선.
+- 새 실험은 별도 가상환경에서.
+- 성능 측정 시 전력 모드, 온도, FPS를 함께 기록.
