@@ -30,3 +30,10 @@ runs/
 Thumbs.db
 .vscode/
 .idea/
+# Large local datasets and generated artifacts
+data/MOT17-03-DPM/
+data/MOT17-04-DPM/
+outputs/state_json/
+outputs/replay/
+*.engine
+*.zip
