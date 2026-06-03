@@ -1,0 +1,3 @@
+mode,runs,pipeline_fps_mean,pipeline_fps_stdev,pipeline_fps_min,pipeline_fps_max,avg_decode_ms_mean,avg_queue_wait_ms_mean,avg_inference_tracking_ms_mean,avg_state_build_ms_mean,avg_consumer_total_ms_mean,p95_consumer_total_ms_mean,consumer_fps_mean
+25w,3,37.871,0.236,37.656,38.124,15.646,0.026,23.546,1.596,25.146,27.632,39.768
+maxn_super,3,45.448,0.144,45.292,45.575,12.377,0.024,19.558,1.395,20.957,23.241,47.718

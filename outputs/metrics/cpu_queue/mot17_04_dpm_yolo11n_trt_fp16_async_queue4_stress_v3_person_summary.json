@@ -1,0 +1,59 @@
+{
+  "experiment": "mot17_04_dpm_yolo11n_trt_fp16_async_queue4_stress_v3_person",
+  "model": "yolo11n.engine",
+  "tracker": "bytetrack.yaml",
+  "confidence_threshold": 0.15,
+  "queue_size": 4,
+  "inference_class_ids": [
+    0
+  ],
+  "queue_policy": "preserve_all_frames_block_when_full",
+  "input_frames": 1050,
+  "used_frames": 1050,
+  "warmup_frames_excluded_from_steady_summary": 30,
+  "initialization_sec": 0.0029,
+  "pipeline_elapsed_sec": 24.2813,
+  "state_json_write_sec": 1.018,
+  "pipeline_fps": 43.243,
+  "all_frames": {
+    "frame_count": 1050,
+    "avg_raw_detection_count": 16.047,
+    "avg_target_detection_count": 16.047,
+    "avg_active_track_count": 16.047,
+    "avg_decode_ms": 16.281,
+    "avg_queue_wait_ms": 0.045,
+    "avg_inference_tracking_ms": 21.205,
+    "avg_state_build_ms": 1.85,
+    "avg_consumer_total_ms": 23.058,
+    "p95_consumer_total_ms": 24.582,
+    "consumer_fps_from_avg_ms": 43.369,
+    "correlation_with_active_track_count": {
+      "inference_tracking_ms": 0.1101,
+      "state_build_ms": 0.8265,
+      "consumer_total_ms": 0.1233
+    }
+  },
+  "steady_state_after_warmup": {
+    "frame_count": 1020,
+    "avg_raw_detection_count": 16.057,
+    "avg_target_detection_count": 16.057,
+    "avg_active_track_count": 16.057,
+    "avg_decode_ms": 16.212,
+    "avg_queue_wait_ms": 0.021,
+    "avg_inference_tracking_ms": 20.741,
+    "avg_state_build_ms": 1.852,
+    "avg_consumer_total_ms": 22.597,
+    "p95_consumer_total_ms": 24.564,
+    "consumer_fps_from_avg_ms": 44.254,
+    "correlation_with_active_track_count": {
+      "inference_tracking_ms": 0.1291,
+      "state_build_ms": 0.824,
+      "consumer_total_ms": 0.165
+    }
+  },
+  "output_files": {
+    "state_json": "/home/geonu/jetson_state_replay/outputs/state_json/cpu_queue/mot17_04_dpm_yolo11n_trt_fp16_async_queue4_stress_v3_person_state.json",
+    "frame_timing_csv": "/home/geonu/jetson_state_replay/outputs/metrics/cpu_queue/mot17_04_dpm_yolo11n_trt_fp16_async_queue4_stress_v3_person_timing.csv",
+    "summary_json": "/home/geonu/jetson_state_replay/outputs/metrics/cpu_queue/mot17_04_dpm_yolo11n_trt_fp16_async_queue4_stress_v3_person_summary.json"
+  }
+}
