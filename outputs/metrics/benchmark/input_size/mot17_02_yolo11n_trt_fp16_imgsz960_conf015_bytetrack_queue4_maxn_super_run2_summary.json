@@ -1,0 +1,56 @@
+{
+  "experiment": "mot17_02_yolo11n_trt_fp16_async_queue4",
+  "model": "yolo11n.engine",
+  "tracker": "bytetrack.yaml",
+  "confidence_threshold": 0.15,
+  "queue_size": 4,
+  "queue_policy": "preserve_all_frames_block_when_full",
+  "input_frames": 600,
+  "used_frames": 600,
+  "warmup_frames_excluded_from_steady_summary": 30,
+  "initialization_sec": 0.0024,
+  "pipeline_elapsed_sec": 16.9236,
+  "state_json_write_sec": 0.4724,
+  "pipeline_fps": 35.453,
+  "all_frames": {
+    "frame_count": 600,
+    "avg_raw_detection_count": 16.757,
+    "avg_target_detection_count": 12.808,
+    "avg_active_track_count": 12.808,
+    "avg_decode_ms": 12.391,
+    "avg_queue_wait_ms": 0.05,
+    "avg_inference_tracking_ms": 26.114,
+    "avg_state_build_ms": 2.016,
+    "avg_consumer_total_ms": 28.134,
+    "p95_consumer_total_ms": 29.78,
+    "consumer_fps_from_avg_ms": 35.545,
+    "correlation_with_active_track_count": {
+      "inference_tracking_ms": -0.0022,
+      "state_build_ms": 0.8918,
+      "consumer_total_ms": 0.0102
+    }
+  },
+  "steady_state_after_warmup": {
+    "frame_count": 570,
+    "avg_raw_detection_count": 17.016,
+    "avg_target_detection_count": 12.961,
+    "avg_active_track_count": 12.961,
+    "avg_decode_ms": 12.339,
+    "avg_queue_wait_ms": 0.024,
+    "avg_inference_tracking_ms": 25.202,
+    "avg_state_build_ms": 2.041,
+    "avg_consumer_total_ms": 27.247,
+    "p95_consumer_total_ms": 29.797,
+    "consumer_fps_from_avg_ms": 36.701,
+    "correlation_with_active_track_count": {
+      "inference_tracking_ms": 0.5125,
+      "state_build_ms": 0.8842,
+      "consumer_total_ms": 0.6328
+    }
+  },
+  "output_files": {
+    "state_json": "/home/geonu/jetson_state_replay/outputs/state_json/cpu_queue/mot17_02_yolo11n_trt_fp16_async_queue4_state.json",
+    "frame_timing_csv": "/home/geonu/jetson_state_replay/outputs/metrics/cpu_queue/mot17_02_yolo11n_trt_fp16_async_queue4_timing.csv",
+    "summary_json": "/home/geonu/jetson_state_replay/outputs/metrics/cpu_queue/mot17_02_yolo11n_trt_fp16_async_queue4_summary.json"
+  }
+}

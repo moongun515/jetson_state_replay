@@ -37,3 +37,40 @@ outputs/state_json/
 outputs/replay/
 *.engine
 *.zip
+
+# Local Jetson model artifacts
+*.engine
+*.onnx
+*.pt
+*.mp4
+
+# Local model archives and build outputs
+models/archive/
+models/build/
+models/engines/
+models/onnx/
+models/final/
+models/weights/
+
+# Large benchmark state outputs
+outputs/state_json/benchmark/
+
+# Raw logs and temporary benchmark files
+outputs/logs/
+outputs/metrics/archive/
+outputs/metrics/power_mode/
+outputs/metrics/thermal_hotcheck/
+outputs/metrics/thermal_quickcheck/
+outputs/metrics/timing/
+outputs/metrics/breakdown/
+outputs/metrics/cpu_queue/
+outputs/metrics/final/
+
+# Keep benchmark summaries, ignore raw benchmark details
+outputs/metrics/benchmark/**/*_console.log
+outputs/metrics/benchmark/**/*_timing.csv
+outputs/metrics/benchmark/**/*_tegrastats.log
+
+# Accidental nested output and local backup
+experiments/outputs/
+README_backup_before_gpu_optimization.md

@@ -1,0 +1,9 @@
+# Jetson State Replay Model Manifest
+
+Generated: 2026. 06. 05. (금) 21:47:00 KST
+
+## Canonical model files
+
+e7ced35f6cfa34a9fc8bc03f9b25e025c4b65adab94558498f46cfdf2084a641  models/engines/yolo11n_trt_fp16_imgsz640_static.engine
+a41c781466f24668e3deeaf7f89a54d446691e134e3409990f5e6d8fa506270f  models/onnx/yolo11n_imgsz640_static.onnx
+0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1  models/weights/yolo11n.pt

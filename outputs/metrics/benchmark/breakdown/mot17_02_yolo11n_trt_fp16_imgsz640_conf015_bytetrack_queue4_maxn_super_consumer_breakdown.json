@@ -1,0 +1,101 @@
+{
+  "target_script": "/home/geonu/jetson_state_replay/experiments/cpu_queue/mot17_trt_async_reader.py",
+  "sync_cuda": true,
+  "warmup_calls_excluded": 30,
+  "notes": [
+    "This is a diagnostic run, not the official maximum-FPS benchmark.",
+    "model_track_total_ms includes Ultralytics framework and callback overhead.",
+    "postprocess_ms includes bbox-oriented result processing such as NMS and Results construction.",
+    "bytetrack_update_ms measures BYTETracker.update calls.",
+    "residual_framework_overhead_ms is an approximate difference, not an independently timed stage."
+  ],
+  "all_calls": {
+    "preprocess_ms": {
+      "count": 600,
+      "avg_ms": 5.7757,
+      "p50_ms": 5.7663,
+      "p95_ms": 6.2161,
+      "max_ms": 9.3929,
+      "total_ms": 3465.3902
+    },
+    "inference_ms": {
+      "count": 600,
+      "avg_ms": 4.6865,
+      "p50_ms": 4.4778,
+      "p95_ms": 5.78,
+      "max_ms": 9.4025,
+      "total_ms": 2811.91
+    },
+    "postprocess_ms": {
+      "count": 600,
+      "avg_ms": 3.7003,
+      "p50_ms": 3.4137,
+      "p95_ms": 5.82,
+      "max_ms": 17.3228,
+      "total_ms": 2220.2047
+    },
+    "bytetrack_update_ms": {
+      "count": 600,
+      "avg_ms": 4.7047,
+      "p50_ms": 4.7162,
+      "p95_ms": 6.2848,
+      "max_ms": 8.1471,
+      "total_ms": 2822.8366
+    },
+    "model_track_total_ms": {
+      "count": 600,
+      "avg_ms": 21.2862,
+      "p50_ms": 20.2212,
+      "p95_ms": 24.4961,
+      "max_ms": 450.6946,
+      "total_ms": 12771.725
+    }
+  },
+  "steady_state_after_warmup": {
+    "preprocess_ms": {
+      "count": 570,
+      "avg_ms": 5.7643,
+      "p50_ms": 5.7555,
+      "p95_ms": 6.2161,
+      "max_ms": 9.3929,
+      "total_ms": 3285.6283
+    },
+    "inference_ms": {
+      "count": 570,
+      "avg_ms": 4.6819,
+      "p50_ms": 4.4764,
+      "p95_ms": 5.8403,
+      "max_ms": 9.4025,
+      "total_ms": 2668.667
+    },
+    "postprocess_ms": {
+      "count": 570,
+      "avg_ms": 3.6815,
+      "p50_ms": 3.4097,
+      "p95_ms": 5.8386,
+      "max_ms": 8.2122,
+      "total_ms": 2098.4568
+    },
+    "bytetrack_update_ms": {
+      "count": 570,
+      "avg_ms": 4.72,
+      "p50_ms": 4.7454,
+      "p95_ms": 6.3312,
+      "max_ms": 8.1471,
+      "total_ms": 2690.3767
+    },
+    "model_track_total_ms": {
+      "count": 570,
+      "avg_ms": 20.5662,
+      "p50_ms": 20.1921,
+      "p95_ms": 24.5049,
+      "max_ms": 29.1069,
+      "total_ms": 11722.754
+    }
+  },
+  "derived_steady_state": {
+    "known_stage_sum_ms": 18.8477,
+    "residual_framework_overhead_ms": 1.7185,
+    "model_track_fps_from_avg_ms": 48.623
+  }
+}

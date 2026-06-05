@@ -560,3 +560,205 @@ CSI 카메라
 [다음] thermal throttling 및 자원 로그 측정
 [다음] CSI 카메라 실시간 입력 연결
 ```
+
+## 17. Benchmark Update — 2026-06-05
+
+이 섹션은 기존 Queue 기반 quick benchmark 이후에 수행한 추가 측정 결과를 정리한다.
+
+기존 결과를 삭제하지 않고 유지하되, 아래 수치를 입력 크기·confidence·리소스 비교를 포함한 최신 기준값으로 사용한다.
+
+---
+
+### 17.1 Current Baseline and Balance Candidate
+
+공통 조건:
+
+```text
+Dataset        MOT17-02-DPM
+Frames         600
+Source image   1920 × 1080 JPG sequence
+Model          YOLO11n
+Runtime        TensorRT FP16
+Tracker        ByteTrack
+Queue          async queue size 4
+Power mode     MAXN_SUPER
+jetson_clocks  enabled
+
+현재 용도별 권장 설정:
+
+Purpose	Input size	Confidence	Reason
+최고 속도	640	0.25	약 46 FPS, 추가 기능을 붙일 여유가 큼
+실시간 균형형	960	0.25	약 36 FPS, 탐지 상태 수 증가
+정확도 우선 오프라인	1280	0.25	탐지량은 높지만 약 21 FPS
+
+현재 실시간 균형 후보:
+
+YOLO11n TensorRT FP16
+imgsz = 960
+confidence = 0.25
+ByteTrack
+Queue(maxsize=4)
+MAXN_SUPER
+17.2 Consumer Stage Breakdown
+
+MAXN_SUPER, YOLO11n TensorRT FP16, input size 640, confidence 0.15 조건에서 Consumer 내부 시간을 세분화하였다.
+
+Stage	Avg time	Ratio
+Preprocess	5.764 ms	28.0%
+TensorRT YOLO inference	4.682 ms	22.8%
+Postprocess	3.682 ms	17.9%
+ByteTrack update	4.720 ms	23.0%
+Framework overhead	1.719 ms	8.4%
+Consumer total	20.566 ms	100%
+
+핵심 관찰:
+
+TensorRT YOLO inference time
+≈
+CPU-based ByteTrack update time
+
+TensorRT FP16을 적용한 이후에는 GPU 추론만이 아니라 CPU 전처리, bbox 후처리, ByteTrack 비용도 전체 처리량에 큰 영향을 준다.
+
+17.3 Power Mode Benchmark with tegrastats
+
+동일한 YOLO11n TensorRT FP16 엔진을 사용하고 nvpmodel 전력 모드만 변경하였다.
+
+각 조건은 3회 반복 측정하였다.
+
+Power mode	Pipeline FPS	Consumer FPS	Decode ms	Infer + Track ms	Avg power	Avg CPU temp	Avg GPU temp
+25W	37.518 ± 0.388	39.353 ± 0.417	15.628	23.611	7.430 W	52.949°C	52.809°C
+MAXN_SUPER	45.275 ± 0.205	47.605 ± 0.234	12.335	19.697	8.202 W	53.357°C	53.198°C
+
+해석:
+
+MAXN_SUPER
+→ 평균 전력 약 10.4% 증가
+→ Pipeline FPS 약 20.7% 증가
+
+단기 반복 구간에서는 명확한 thermal throttling이나 불안정성은 관찰되지 않았다.
+
+17.4 Input Size Benchmark
+
+원본 JPG는 항상 1920 × 1080으로 유지하였다.
+
+TensorRT 엔진 내부 입력 크기만 640, 960, 1280으로 변경하였다.
+
+공통 조건:
+
+YOLO11n TensorRT FP16
+MAXN_SUPER
+ByteTrack
+confidence = 0.15
+Queue(maxsize=4)
+
+각 조건은 3회 반복 측정하였다.
+
+Input size	Pipeline FPS	Consumer FPS	Infer + Track ms	Objects	Pred / GT ratio	Avg power	Avg temp
+640	45.778 ± 0.314	48.140 ± 0.362	19.432	5,377	0.2894	8.239 W	55.911°C
+960	35.772 ± 0.304	37.034 ± 0.312	25.059	7,685	0.4136	9.274 W	56.069°C
+1280	21.290 ± 0.135	21.733 ± 0.140	43.898	9,760	0.5253	9.723 W	56.427°C
+
+해석:
+
+640
+→ 최고 속도 조건
+→ 실시간 처리 여유가 큼
+
+960
+→ 30 FPS 이상 유지
+→ 640 대비 객체 상태 수 약 42.9% 증가
+→ 속도와 탐지 밀도의 균형 후보
+
+1280
+→ 객체 상태 수는 가장 많음
+→ 약 21 FPS로 감소
+→ 정확도 우선 오프라인 분석 조건
+
+입력 크기 증가에 따라 JPG decode 시간은 거의 변하지 않았다.
+
+640  : 12.372 ms
+960  : 12.360 ms
+1280 : 12.291 ms
+
+따라서 속도 저하는 저장소 접근보다 TensorRT 추론, bbox 후처리, ByteTrack 부담 증가의 영향으로 해석할 수 있다.
+
+17.5 Confidence Threshold Benchmark
+
+YOLO11n TensorRT FP16, imgsz=960, MAXN_SUPER 조건에서 confidence threshold를 비교하였다.
+
+Confidence	Pipeline FPS	Consumer FPS	Infer + Track ms	Objects	Unique tracks
+0.15	34.984 ± 1.616	36.099 ± 1.817	25.846	7,685	176
+0.25	36.585 ± 0.557	37.844 ± 0.585	24.438	7,685	176
+
+최종 State JSON과 Replay의 객체 수 차이는 거의 없었다.
+
+TensorRT 엔진에 confidence threshold가 고정된 것인지 확인하기 위해 순수 YOLO predict를 단일 프레임에서 추가 실행하였다.
+
+Confidence	YOLO detections	Minimum confidence	Detections below 0.25
+0.15	40	0.1530	14
+0.25	26	0.2561	0
+
+해석:
+
+TensorRT 엔진에 confidence=0.25가 고정된 것은 아님.
+
+confidence=0.15에서는
+낮은 confidence bbox 후보가 실제로 증가함.
+
+그러나 기본 ByteTrack 설정에서는
+낮은 confidence 후보가 최종 active track으로 거의 남지 않음.
+
+따라서 현재 기본 confidence는 0.25로 설정.
+
+향후 tracker threshold를 함께 조절하면 낮은 confidence 객체의 활용 가능성을 별도로 검토할 수 있다.
+
+17.6 TensorRT Engine Organization
+
+입력 크기별 정적 TensorRT FP16 엔진을 생성하였다.
+
+models/engines/
+├─ yolo11n_trt_fp16_imgsz640_static.engine
+├─ yolo11n_trt_fp16_imgsz960_static.engine
+└─ yolo11n_trt_fp16_imgsz1280_static.engine
+
+기존 실행 스크립트와의 호환성을 유지하기 위해 프로젝트 루트의 yolo11n.engine은 현재 활성 엔진을 가리키는 symbolic link로 사용한다.
+
+기본 복구 상태:
+
+yolo11n.engine
+→ models/engines/yolo11n_trt_fp16_imgsz640_static.engine
+17.7 Updated Status Summary
+[완료] GT Label Replay
+[완료] YOLO + ByteTrack Automatic Replay
+[완료] Jetson CUDA 정상화
+[완료] TensorRT FP16 엔진 생성
+[완료] Queue(maxsize=4) 기반 CPU 입력 최적화
+[완료] Consumer 내부 병목 분해
+[완료] 25W / MAXN_SUPER 3회 반복 및 tegrastats 비교
+[완료] input size 640 / 960 / 1280 비교
+[완료] confidence 0.15 / 0.25 비교
+[완료] 순수 YOLO predict를 통한 confidence 동작 확인
+[확인] 실시간 균형 후보: imgsz=960, conf=0.25, MAXN_SUPER
+[다음] YOLO11n vs YOLO11s 비교
+[다음] Replay complexity benchmark
+[다음] 최종 후보 5~10분 안정성 테스트
+[후속] CSI 카메라 실시간 입력
+[후속] tracker threshold 최적화
+[후속] GPU tracker 또는 DeepStream nvtracker 검토
+17.8 Next Experiment
+
+다음 실험은 모델 크기 비교이다.
+
+YOLO11n
+vs
+YOLO11s
+
+비교 조건:
+
+input size     960
+confidence     0.25
+tracker        ByteTrack
+queue size     4
+power mode     MAXN_SUPER
+jetson_clocks  enabled
+'''
