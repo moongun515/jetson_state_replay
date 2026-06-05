@@ -74,3 +74,16 @@ outputs/metrics/benchmark/**/*_tegrastats.log
 # Accidental nested output and local backup
 experiments/outputs/
 README_backup_before_gpu_optimization.md
+
+# Local warmup summaries
+outputs/metrics/benchmark/**/*_warmup_summary.json
+
+# Legacy replay metric outputs
+outputs/metrics/mot17_02_*_replay_frame_metrics.csv
+outputs/metrics/mot17_02_*_replay_metrics.json
+outputs/metrics/mot17_02_*_replay_summary.txt
+outputs/metrics/mot17_02_pred_yolo_bytetrack_metrics.json
+
+# Legacy local experiment scripts
+experiments/cpu_queue/mot17_trt_async_reader_stress.py
+run_queue4_power_mode_3x.sh
