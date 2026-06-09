@@ -1,0 +1,54 @@
+{
+  "experiment": "mot17_02_yolo11n_trt_fp16_stage_timing",
+  "model": "yolo11n.engine",
+  "tracker": "bytetrack.yaml",
+  "confidence_threshold": 0.15,
+  "input_frames": 600,
+  "used_frames": 600,
+  "warmup_frames_excluded_from_steady_summary": 30,
+  "initialization_sec": 0.0027,
+  "processing_elapsed_sec": 21.08,
+  "state_json_write_sec": 0.3292,
+  "processing_fps": 28.463,
+  "all_frames": {
+    "frame_count": 600,
+    "avg_raw_detection_count": 10.838,
+    "avg_target_detection_count": 8.962,
+    "avg_active_track_count": 8.962,
+    "avg_read_ms": 12.351,
+    "avg_inference_tracking_ms": 21.51,
+    "avg_state_build_ms": 1.241,
+    "avg_total_ms": 35.122,
+    "p95_total_ms": 38.341,
+    "estimated_fps_from_avg_total_ms": 28.472,
+    "correlation_with_active_track_count": {
+      "read_ms": 0.0511,
+      "inference_tracking_ms": 0.0382,
+      "state_build_ms": 0.9015,
+      "total_ms": 0.0469
+    }
+  },
+  "steady_state_after_warmup": {
+    "frame_count": 570,
+    "avg_raw_detection_count": 10.863,
+    "avg_target_detection_count": 8.893,
+    "avg_active_track_count": 8.893,
+    "avg_read_ms": 12.323,
+    "avg_inference_tracking_ms": 20.517,
+    "avg_state_build_ms": 1.237,
+    "avg_total_ms": 34.097,
+    "p95_total_ms": 38.236,
+    "estimated_fps_from_avg_total_ms": 29.328,
+    "correlation_with_active_track_count": {
+      "read_ms": -0.0215,
+      "inference_tracking_ms": 0.2697,
+      "state_build_ms": 0.9138,
+      "total_ms": 0.3585
+    }
+  },
+  "output_files": {
+    "state_json": "/home/geonu/jetson_state_replay/outputs/state_json/final/mot17_02_yolo11n_trt_fp16_stage_timing_state.json",
+    "frame_timing_csv": "/home/geonu/jetson_state_replay/outputs/metrics/final/mot17_02_yolo11n_trt_fp16_stage_timing.csv",
+    "summary_json": "/home/geonu/jetson_state_replay/outputs/metrics/final/mot17_02_yolo11n_trt_fp16_stage_timing_summary.json"
+  }
+}
