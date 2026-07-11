@@ -87,3 +87,8 @@ outputs/metrics/mot17_02_pred_yolo_bytetrack_metrics.json
 # Legacy local experiment scripts
 experiments/cpu_queue/mot17_trt_async_reader_stress.py
 run_queue4_power_mode_3x.sh
+
+# Final CSI live TensorRT engine
+!models/engines/
+models/engines/*
+!models/engines/yolo11n_trt_fp16_imgsz640_static.engine
