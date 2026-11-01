@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FallGuard"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="짧은 영상에서 낙상/쓰러진 상태를 시험 분석합니다. 영상과 결과는 휴대폰 밖으로 전송되지 않습니다."
+            android:textSize="16sp" />
+        <Button
+            android:id="@+id/select_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="짧은 영상 선택" />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="1~30초로 잘라 둔 영상을 선택하세요."
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="연구용 시제품입니다. 일상적으로 눕는 장면과 실시간 영상에 대한 검증이 부족하므로 안전 경보로 사용하지 마세요."
+            android:textSize="14sp" />
+    </LinearLayout>
+</ScrollView>
