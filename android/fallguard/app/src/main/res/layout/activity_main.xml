@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="짧은 영상에서 낙상/쓰러진 상태를 시험 분석합니다. 영상과 결과는 휴대폰 밖으로 전송되지 않습니다."
+            android:text="짧은 영상에서 낙상/쓰러진 상태를 시험 분석합니다. 앱은 영상과 결과를 서버로 보내지 않습니다."
             android:textSize="16sp" />
         <Button
             android:id="@+id/select_video"

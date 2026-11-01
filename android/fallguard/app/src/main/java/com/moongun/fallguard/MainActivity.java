@@ -28,6 +28,7 @@ public final class MainActivity extends Activity {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("video/*");
+            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
             startActivityForResult(intent, PICK_VIDEO);
         });
         if (Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getData() != null) {
@@ -45,6 +46,11 @@ public final class MainActivity extends Activity {
     }
 
     private void analyzeUri(Uri video) {
+        String scheme = video.getScheme();
+        if (!"content".equals(scheme) && !"file".equals(scheme)) {
+            status.setText("기기에 저장된 영상만 선택하세요.");
+            return;
+        }
         selectVideo.setEnabled(false);
         status.setText("휴대폰에서 분석 중입니다. 잠시 기다려 주세요…");
         executor.execute(() -> {
